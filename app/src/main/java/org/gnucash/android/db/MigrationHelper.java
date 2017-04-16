@@ -29,7 +29,7 @@ import android.support.v7.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
+import org.gnucash.android.dummy.Crashlytics;
 
 import org.gnucash.android.R;
 import org.gnucash.android.app.GnuCashApplication;

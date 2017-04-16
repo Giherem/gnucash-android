@@ -31,7 +31,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.crashlytics.android.Crashlytics;
+import org.gnucash.android.dummy.Crashlytics;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;

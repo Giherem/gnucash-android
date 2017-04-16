@@ -22,7 +22,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
+import org.gnucash.android.dummy.Crashlytics;
 
 import org.gnucash.android.app.GnuCashApplication;
 import org.gnucash.android.model.Commodity;

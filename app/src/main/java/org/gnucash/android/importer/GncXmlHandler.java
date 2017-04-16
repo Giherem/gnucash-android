@@ -21,7 +21,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
+import org.gnucash.android.dummy.Crashlytics;
 
 import org.gnucash.android.app.GnuCashApplication;
 import org.gnucash.android.db.DatabaseHelper;

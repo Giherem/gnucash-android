@@ -36,13 +36,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.dropbox.core.android.Auth;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.drive.Drive;
-import com.google.android.gms.drive.DriveFolder;
-import com.google.android.gms.drive.MetadataChangeSet;
 
 import org.gnucash.android.R;
 import org.gnucash.android.app.GnuCashApplication;
@@ -90,11 +83,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 	 */
 	public static final String LOG_TAG = "BackupPrefFragment";
 
-	/**
-	 * Client for Google Drive Sync
-	 */
-	public static GoogleApiClient mGoogleApiClient;
-
 
 	@Override
 	public void onCreatePreferences(Bundle bundle, String s) {
@@ -109,10 +97,7 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setTitle(R.string.title_backup_prefs);
-
-		mGoogleApiClient = getGoogleApiClient(getActivity());
-		
-	}	
+	}
 	
 	@Override
 	public void onResume() {
@@ -162,17 +147,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 
 		if (key.equals(getString(R.string.key_restore_backup))){
 			restoreBackup();
-		}
-
-
-		if (key.equals(getString(R.string.key_dropbox_sync))){
-			toggleDropboxSync();
-			toggleDropboxPreference(preference);
-		}
-
-		if (key.equals(getString(R.string.key_google_drive_sync))){
-			toggleGoogleDriveSync();
-			toggleGoogleDrivePreference(preference);
 		}
 
 		if (key.equals(getString(R.string.key_owncloud_sync))){
@@ -265,20 +239,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 	}
 
 	/**
-	 * Toggles synchronization with Google Drive on or off
-	 */
-	private void toggleGoogleDriveSync(){
-		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		final String appFolderId = sharedPreferences.getString(getString(R.string.key_google_drive_app_folder_id), null);
-		if (appFolderId != null){
-			sharedPreferences.edit().remove(getString(R.string.key_google_drive_app_folder_id)).commit(); //commit (not apply) because we need it to be saved *now*
-			mGoogleApiClient.disconnect();
-		} else {
-			mGoogleApiClient.connect();
-		}
-	}
-
-	/**
 	 * Toggles synchronization with ownCloud on or off
 	 */
 	private void toggleOwnCloudSync(Preference pref){
@@ -291,67 +251,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
             ocDialog.show(getActivity().getSupportFragmentManager(), "owncloud_dialog");
 		}
 	}
-
-
-	public static GoogleApiClient getGoogleApiClient(final Context context) {
-		return new GoogleApiClient.Builder(context)
-				.addApi(Drive.API)
-				.addScope(Drive.SCOPE_APPFOLDER)
-				.addScope(Drive.SCOPE_FILE)
-				.addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
-					@Override
-					public void onConnected(Bundle bundle) {
-						SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-						String appFolderId = sharedPreferences.getString(context.getString(R.string.key_google_drive_app_folder_id), null);
-						if (appFolderId == null) {
-							MetadataChangeSet changeSet = new MetadataChangeSet.Builder()
-									.setTitle(context.getString(R.string.app_name)).build();
-							Drive.DriveApi.getRootFolder(mGoogleApiClient).createFolder(
-									mGoogleApiClient, changeSet).setResultCallback(new ResultCallback<DriveFolder.DriveFolderResult>() {
-								@Override
-								public void onResult(DriveFolder.DriveFolderResult result) {
-									if (!result.getStatus().isSuccess()) {
-										Log.e(LOG_TAG, "Error creating the application folder");
-										return;
-									}
-
-									String folderId = result.getDriveFolder().getDriveId().toString();
-									PreferenceManager.getDefaultSharedPreferences(context)
-											.edit().putString(context.getString(R.string.key_google_drive_app_folder_id),
-											folderId).commit(); //commit because we need it to be saved *now*
-								}
-							});
-
-						}
-						Toast.makeText(context, R.string.toast_connected_to_google_drive, Toast.LENGTH_SHORT).show();
-					}
-
-					@Override
-					public void onConnectionSuspended(int i) {
-						Toast.makeText(context, "Connection to Google Drive suspended!", Toast.LENGTH_LONG).show();
-					}
-				})
-				.addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
-					@Override
-					public void onConnectionFailed(ConnectionResult connectionResult) {
-						Log.e(PreferenceActivity.class.getName(), "Connection to Google Drive failed");
-						if (connectionResult.hasResolution() && context instanceof Activity) {
-							try {
-								Log.e(BackupPreferenceFragment.class.getName(), "Trying resolution of Google API connection failure");
-								connectionResult.startResolutionForResult((Activity) context, REQUEST_RESOLVE_CONNECTION);
-							} catch (IntentSender.SendIntentException e) {
-								Log.e(BackupPreferenceFragment.class.getName(), e.getMessage());
-								Toast.makeText(context, R.string.toast_unable_to_connect_to_google_drive, Toast.LENGTH_LONG).show();
-							}
-						} else {
-							if (context instanceof Activity)
-								GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), (Activity) context, 0).show();
-						}
-					}
-				})
-				.build();
-	}
-
 	/**
 	 * Opens a dialog for a user to select a backup to restore and then restores the backup
 	 */
@@ -421,7 +320,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 
 			case REQUEST_RESOLVE_CONNECTION:
 				if (resultCode == Activity.RESULT_OK) {
-					mGoogleApiClient.connect();
 					Preference pref = findPreference(getString(R.string.key_dropbox_sync));
 					if (pref == null) //if we are in a preference header fragment, this may return null
 						break;

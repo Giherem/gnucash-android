@@ -31,9 +31,6 @@ import android.support.multidex.MultiDexApplication;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
-import com.facebook.stetho.Stetho;
 import com.uservoice.uservoicesdk.Config;
 import com.uservoice.uservoicesdk.UserVoice;
 
@@ -51,6 +48,7 @@ import org.gnucash.android.db.adapter.RecurrenceDbAdapter;
 import org.gnucash.android.db.adapter.ScheduledActionDbAdapter;
 import org.gnucash.android.db.adapter.SplitsDbAdapter;
 import org.gnucash.android.db.adapter.TransactionsDbAdapter;
+import org.gnucash.android.dummy.Crashlytics;
 import org.gnucash.android.model.Commodity;
 import org.gnucash.android.model.Money;
 import org.gnucash.android.service.ScheduledActionService;
@@ -59,8 +57,6 @@ import org.gnucash.android.ui.settings.PreferenceActivity;
 
 import java.util.Currency;
 import java.util.Locale;
-
-import io.fabric.sdk.android.Fabric;
 
 /**
  * An {@link Application} subclass for retrieving static context
@@ -123,10 +119,6 @@ public class GnuCashApplication extends MultiDexApplication {
         super.onCreate();
         GnuCashApplication.context = getApplicationContext();
 
-        Fabric.with(this, new Crashlytics.Builder().core(
-                new CrashlyticsCore.Builder().disabled(!isCrashlyticsEnabled()).build())
-                .build());
-
         setUpUserVoice();
 
         BookDbHelper bookDbHelper = new BookDbHelper(getApplicationContext());
@@ -154,7 +146,6 @@ public class GnuCashApplication extends MultiDexApplication {
         try {
             mainDb = mDbHelper.getWritableDatabase();
         } catch (SQLException e) {
-            Crashlytics.logException(e);
             Log.e("GnuCashApplication", "Error getting database: " + e.getMessage());
             mainDb = mDbHelper.getReadableDatabase();
         }
@@ -249,7 +240,7 @@ public class GnuCashApplication extends MultiDexApplication {
      * @return {@code true} if crashlytics is enabled, {@code false} otherwise
      */
     public static boolean isCrashlyticsEnabled(){
-        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.key_enable_crashlytics), false);
+        return false;
     }
 
     /**
@@ -389,17 +380,7 @@ public class GnuCashApplication extends MultiDexApplication {
     }
 
     /**
-     * Sets up Stetho to enable remote debugging from Chrome developer tools.
-     *
-     * <p>Among other things, allows access to the database and preferences.
-     * See http://facebook.github.io/stetho/#features</p>
-     */
-    private void setUpRemoteDebuggingFromChrome() {
-        Stetho.Initializer initializer =
-                Stetho.newInitializerBuilder(this)
-                        .enableWebKitInspector(
-                                Stetho.defaultInspectorModulesProvider(this))
-                        .build();
-        Stetho.initialize(initializer);
-    }
+     * removed from free version
+     * */
+    private void setUpRemoteDebuggingFromChrome() {}
 }

@@ -2,7 +2,7 @@ package org.gnucash.android.test.unit.testutil;
 
 import android.content.Context;
 
-import com.crashlytics.android.Crashlytics;
+import org.gnucash.android.dummy.Crashlytics;
 
 import org.robolectric.annotation.Implementation;
 import org.robolectric.annotation.Implements;

@@ -21,7 +21,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
+import org.gnucash.android.dummy.Crashlytics;
 
 import org.gnucash.android.db.adapter.AccountsDbAdapter;
 import org.gnucash.android.model.Money;

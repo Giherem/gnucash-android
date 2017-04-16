@@ -28,7 +28,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
+import org.gnucash.android.dummy.Crashlytics;
 
 import org.gnucash.android.app.GnuCashApplication;
 import org.gnucash.android.model.AccountType;

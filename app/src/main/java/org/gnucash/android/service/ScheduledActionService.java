@@ -24,7 +24,7 @@ import android.os.PowerManager;
 import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
+import org.gnucash.android.dummy.Crashlytics;
 
 import org.gnucash.android.app.GnuCashApplication;
 import org.gnucash.android.db.DatabaseHelper;

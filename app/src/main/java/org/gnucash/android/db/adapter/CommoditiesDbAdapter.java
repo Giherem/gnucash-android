@@ -6,10 +6,9 @@ import android.database.sqlite.SQLiteStatement;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
-
 import org.gnucash.android.app.GnuCashApplication;
 import org.gnucash.android.db.DatabaseSchema;
+import org.gnucash.android.dummy.Crashlytics;
 import org.gnucash.android.model.Commodity;
 
 import static org.gnucash.android.db.DatabaseSchema.CommodityEntry;

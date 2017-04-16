@@ -20,7 +20,7 @@ package org.gnucash.android.model;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
+import org.gnucash.android.dummy.Crashlytics;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

@@ -28,12 +28,11 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
-
 import org.gnucash.android.R;
 import org.gnucash.android.app.GnuCashApplication;
 import org.gnucash.android.db.DatabaseSchema;
 import org.gnucash.android.db.adapter.BooksDbAdapter;
+import org.gnucash.android.dummy.Crashlytics;
 import org.gnucash.android.ui.util.TaskDelegate;
 
 import java.io.InputStream;

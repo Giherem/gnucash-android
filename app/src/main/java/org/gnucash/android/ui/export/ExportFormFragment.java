@@ -320,20 +320,10 @@ public class ExportFormFragment extends Fragment implements
 						recurrenceOptionsView.setVisibility(View.VISIBLE);
 						break;
 					case 1:
-						recurrenceOptionsView.setVisibility(View.VISIBLE);
-						mExportTarget = ExportParams.ExportTarget.DROPBOX;
-						String dropboxAppKey = getString(R.string.dropbox_app_key, BackupPreferenceFragment.DROPBOX_APP_KEY);
-						String dropboxAppSecret = getString(R.string.dropbox_app_secret, BackupPreferenceFragment.DROPBOX_APP_SECRET);
-
-						if (!DropboxHelper.hasToken()) {
-							Auth.startOAuth2Authentication(getActivity(), dropboxAppKey);
-						}
+						// Anciennement dropbox
 						break;
 					case 2:
-						recurrenceOptionsView.setVisibility(View.VISIBLE);
-						mExportTarget = ExportParams.ExportTarget.GOOGLE_DRIVE;
-						BackupPreferenceFragment.mGoogleApiClient = BackupPreferenceFragment.getGoogleApiClient(getActivity());
-						BackupPreferenceFragment.mGoogleApiClient.connect();
+						// Anciennement google drive
 						break;
 					case 3:
 						recurrenceOptionsView.setVisibility(View.VISIBLE);
@@ -488,9 +478,11 @@ public class ExportFormFragment extends Fragment implements
 	 */
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+/*
 		if (requestCode == BackupPreferenceFragment.REQUEST_RESOLVE_CONNECTION && resultCode == Activity.RESULT_OK) {
 			BackupPreferenceFragment.mGoogleApiClient.connect();
 		}
+*/
 	}
 
 	@Override

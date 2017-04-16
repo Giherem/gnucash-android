@@ -53,7 +53,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
+import org.gnucash.android.dummy.Crashlytics;
 import com.kobakei.ratethisapp.RateThisApp;
 
 import org.gnucash.android.BuildConfig;

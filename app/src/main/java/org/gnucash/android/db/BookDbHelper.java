@@ -23,7 +23,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
 
 import org.gnucash.android.app.GnuCashApplication;
 import org.gnucash.android.db.DatabaseSchema.BookEntry;
@@ -31,6 +30,7 @@ import org.gnucash.android.db.adapter.AccountsDbAdapter;
 import org.gnucash.android.db.adapter.BooksDbAdapter;
 import org.gnucash.android.db.adapter.SplitsDbAdapter;
 import org.gnucash.android.db.adapter.TransactionsDbAdapter;
+import org.gnucash.android.dummy.Crashlytics;
 import org.gnucash.android.export.Exporter;
 import org.gnucash.android.model.Book;
 import org.gnucash.android.util.RecursiveMoveFiles;
