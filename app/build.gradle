@@ -22,7 +22,7 @@ def gitSha() {
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId "org.gnucash.android.floss"
         testApplicationId 'org.gnucash.android.floss.test'
@@ -202,7 +202,6 @@ dependencies {
             'com.github.techfreak:wizardpager:1.0.3',
             'net.objecthunter:exp4j:0.4.7',
             'org.apache.jackrabbit:jackrabbit-webdav:2.13.3',
-            'com.dropbox.core:dropbox-core-sdk:2.1.2',
             'com.android.support:multidex:1.0.1'
     )
 

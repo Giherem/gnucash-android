@@ -35,8 +35,6 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.dropbox.core.android.Auth;
-
 import org.gnucash.android.R;
 import org.gnucash.android.app.GnuCashApplication;
 import org.gnucash.android.db.adapter.BooksDbAdapter;
@@ -223,20 +221,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 		((CheckBoxPreference)pref).setChecked(appFolderId != null);
 	}
 
-
-	/**
-	 * Toggles the authorization state of a DropBox account.
-	 * If a link exists, it is removed else DropBox authorization is started
-	 */
-	private void toggleDropboxSync() {
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		String accessToken = prefs.getString(getString(R.string.key_dropbox_access_token), null);
-		if (accessToken == null){
-			Auth.startOAuth2Authentication(getActivity(), getString(R.string.dropbox_app_key));
-		} else {
-			prefs.edit().remove(getString(R.string.key_dropbox_access_token)).apply();
-		}
-	}
 
 	/**
 	 * Toggles synchronization with ownCloud on or off
