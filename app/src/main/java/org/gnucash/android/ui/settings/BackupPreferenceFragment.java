@@ -67,16 +67,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 	public static final int REQUEST_RESOLVE_CONNECTION = 0x12;
 
 	/**
-	 * Testing app key for DropBox API
-	 */
-	final static public String DROPBOX_APP_KEY      = "dhjh8ke9wf05948";
-
-	/**
-	 * Testing app secret for DropBox API
-	 */
-	final static public String DROPBOX_APP_SECRET   = "h2t9fphj3nr4wkw";
-
-	/**
 	 * String for tagging log statements
 	 */
 	public static final String LOG_TAG = "BackupPrefFragment";
@@ -102,7 +92,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 		super.onResume();
 		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-		//if we are returning from DropBox authentication, save the key which was generated
 
 		String keyDefaultEmail = getString(R.string.key_default_export_email);		
 		Preference pref = findPreference(keyDefaultEmail);
@@ -126,13 +115,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 		pref = findPreference(getString(R.string.key_create_backup));
 		pref.setOnPreferenceClickListener(this);
 
-		pref = findPreference(getString(R.string.key_dropbox_sync));
-		pref.setOnPreferenceClickListener(this);
-		toggleDropboxPreference(pref);
-
-		pref = findPreference(getString(R.string.key_google_drive_sync));
-		pref.setOnPreferenceClickListener(this);
-		toggleGoogleDrivePreference(pref);
 
 		pref = findPreference(getString(R.string.key_owncloud_sync));
 		pref.setOnPreferenceClickListener(this);
@@ -193,16 +175,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 
 
 	/**
-	 * Toggles the checkbox of the DropBox Sync preference if a DropBox account is linked
-	 * @param pref DropBox Sync preference
-	 */
-	public void toggleDropboxPreference(Preference pref) {
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		String accessToken = prefs.getString(getString(R.string.key_dropbox_access_token), null);
-		((CheckBoxPreference)pref).setChecked(accessToken != null);
-	}
-
-	/**
 	 * Toggles the checkbox of the ownCloud Sync preference if an ownCloud account is linked
 	 * @param pref ownCloud Sync preference
 	 */
@@ -210,17 +182,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 		SharedPreferences mPrefs = getActivity().getSharedPreferences(getString(R.string.owncloud_pref), Context.MODE_PRIVATE);
 		((CheckBoxPreference)pref).setChecked(mPrefs.getBoolean(getString(R.string.owncloud_sync), false));
 	}
-
-	/**
-	 * Toggles the checkbox of the GoogleDrive Sync preference if a Google Drive account is linked
-	 * @param pref Google Drive Sync preference
-	 */
-	public void toggleGoogleDrivePreference(Preference pref){
-		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		String appFolderId = sharedPreferences.getString(getString(R.string.key_google_drive_app_folder_id),null);
-		((CheckBoxPreference)pref).setChecked(appFolderId != null);
-	}
-
 
 	/**
 	 * Toggles synchronization with ownCloud on or off
@@ -294,22 +255,6 @@ public class BackupPreferenceFragment extends PreferenceFragmentCompat implement
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode){
-
-			case REQUEST_LINK_TO_DBX:
-				Preference preference = findPreference(getString(R.string.key_dropbox_sync));
-				if (preference == null) //if we are in a preference header fragment, this may return null
-					break;
-				toggleDropboxPreference(preference);
-				break;
-
-			case REQUEST_RESOLVE_CONNECTION:
-				if (resultCode == Activity.RESULT_OK) {
-					Preference pref = findPreference(getString(R.string.key_dropbox_sync));
-					if (pref == null) //if we are in a preference header fragment, this may return null
-						break;
-					toggleDropboxPreference(pref);
-				}
-				break;
 		}
 	}
 }

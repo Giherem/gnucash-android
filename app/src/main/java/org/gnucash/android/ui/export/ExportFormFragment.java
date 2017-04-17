@@ -467,11 +467,6 @@ public class ExportFormFragment extends Fragment implements
 	 */
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-/*
-		if (requestCode == BackupPreferenceFragment.REQUEST_RESOLVE_CONNECTION && resultCode == Activity.RESULT_OK) {
-			BackupPreferenceFragment.mGoogleApiClient.connect();
-		}
-*/
 	}
 
 	@Override
