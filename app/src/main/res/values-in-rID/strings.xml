@@ -64,8 +64,6 @@
   <string name="title_settings">Pengaturan</string>
   <string-array name="export_destinations">
     <item>SD Card</item>
-    <item>Dropbox</item>
-    <item>Google Drive</item>
     <item>ownCloud</item>
     <item>Kirim ke&#8230;</item>
   </string-array>

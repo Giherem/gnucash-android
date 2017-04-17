@@ -64,8 +64,6 @@
   <string name="title_settings">Ajustes</string>
   <string-array name="export_destinations">
     <item>Tarjeta SD</item>
-    <item>Dropbox</item>
-    <item>Google Drive</item>
     <item>ownCloud</item>
     <item>Enviar a&#8230;</item>
   </string-array>

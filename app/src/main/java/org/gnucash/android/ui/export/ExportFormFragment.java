@@ -315,12 +315,6 @@ public class ExportFormFragment extends Fragment implements
 						recurrenceOptionsView.setVisibility(View.VISIBLE);
 						break;
 					case 1:
-						// Anciennement dropbox
-						break;
-					case 2:
-						// Anciennement google drive
-						break;
-					case 3:
 						recurrenceOptionsView.setVisibility(View.VISIBLE);
 						mExportTarget = ExportParams.ExportTarget.OWNCLOUD;
 						if(!(PreferenceManager.getDefaultSharedPreferences(getActivity())
@@ -329,7 +323,7 @@ public class ExportFormFragment extends Fragment implements
 							ocDialog.show(getActivity().getSupportFragmentManager(), "ownCloud dialog");
 						}
 						break;
-					case 4:
+					case 2:
 						mExportTarget = ExportParams.ExportTarget.SHARING;
 						recurrenceOptionsView.setVisibility(View.GONE);
 						break;

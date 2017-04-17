@@ -64,8 +64,6 @@
   <string name="title_settings">Beállítások</string>
   <string-array name="export_destinations">
     <item>SD-kártya</item>
-    <item>Dropbox</item>
-    <item>Google Drive</item>
     <item>ownCloud</item>
     <item>Send to&#8230;</item>
   </string-array>

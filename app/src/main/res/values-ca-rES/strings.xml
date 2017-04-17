@@ -64,8 +64,6 @@
   <string name="title_settings">Preferències</string>
   <string-array name="export_destinations">
     <item>Targeta SD</item>
-    <item>Dropbox</item>
-    <item>Google Drive</item>
     <item>ownCloud</item>
     <item>Envia a&#8230;</item>
   </string-array>

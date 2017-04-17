@@ -64,8 +64,6 @@
   <string name="title_settings">설정</string>
   <string-array name="export_destinations">
     <item>SD 카드</item>
-    <item>Dropbox</item>
-    <item>Google Drive</item>
     <item>ownCloud</item>
     <item>보낼 곳 지정...</item>
   </string-array>

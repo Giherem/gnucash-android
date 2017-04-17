@@ -64,8 +64,6 @@
     <string name="title_settings">Settings</string>
     <string-array name="export_destinations">
         <item>SD Card</item>
-        <item>Dropbox</item>
-        <item>Google Drive</item>
         <item>ownCloud</item>
         <item>Send to&#8230;</item>
     </string-array>
@@ -285,10 +283,8 @@
     <string name="label_tap_to_create_schedule">Tap to create schedule</string>
     <string name="title_restore_backup">Restore Backup…</string>
     <string name="header_backup_and_export_settings">Backup &amp; export</string>
-    <string name="title_dropbox_sync_preference">Enable DropBox</string>
     <string name="title_owncloud_sync_preference">Enable ownCloud </string>
     <string name="title_backup_preference_category">Backup</string>
-    <string name="summary_dropbox_sync">Enable exporting to DropBox</string>
     <string name="summary_owncloud_sync">Enable exporting to ownCloud</string>
     <string name="title_select_gnucash_xml_file">Select GnuCash XML file</string>
     <string name="title_backup_prefs">Backup Preferences</string>

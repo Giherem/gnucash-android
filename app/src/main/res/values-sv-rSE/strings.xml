@@ -64,8 +64,6 @@
   <string name="title_settings">Inställningar</string>
   <string-array name="export_destinations">
     <item>SD-kort</item>
-    <item>Dropbox</item>
-    <item>Google Drive</item>
     <item>ownCloud</item>
     <item>Skicka till&#8230;</item>
   </string-array>

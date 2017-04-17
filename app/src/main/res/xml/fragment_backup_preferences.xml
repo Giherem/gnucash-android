@@ -23,18 +23,6 @@
         <Preference android:title="@string/title_restore_backup"
             android:key="@string/key_restore_backup"
             android:summary="@string/summary_restore_backup_pref" />
-        <CheckBoxPreference android:title="@string/title_dropbox_sync_preference"
-            android:summary="@string/summary_dropbox_sync"
-            android:checked="false"
-            android:key="@string/key_dropbox_sync"
-            android:icon="@drawable/ic_dropbox_android" />
-
-        <CheckBoxPreference android:title="@string/title_google_drive_sync_pref"
-            android:summary="@string/summary_google_drive_sync"
-            android:checked="false"
-            android:key="@string/key_google_drive_sync"
-            android:icon="@drawable/ic_google_drive" />
-
         <CheckBoxPreference android:title="@string/title_owncloud_sync_preference"
             android:summary="@string/summary_owncloud_sync"
             android:checked="false"
